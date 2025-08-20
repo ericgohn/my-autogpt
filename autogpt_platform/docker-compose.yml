@@ -79,7 +79,7 @@ services:
 
   clamav:
     <<: *agpt-services
-    image: clamav/clamav-debian:latest
+    image: ${DOCKER_SRC}clamav/clamav-debian:latest
     ports:
       - "3310:3310"
     volumes:
@@ -152,7 +152,7 @@ services:
     <<: *supabase-services
     profiles:
       - local
-    image: busybox
+    image: ${DOCKER_SRC}busybox
     command: /bin/true
     depends_on:
       - kong
@@ -168,7 +168,7 @@ services:
     <<: *agpt-services
     profiles:
       - local
-    image: busybox
+    image: ${DOCKER_SRC}busybox
     command: /bin/true
     depends_on:
       - deps
