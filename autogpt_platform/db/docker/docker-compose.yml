@@ -30,6 +30,7 @@ x-supabase-env: &supabase-env
   POSTGRES_HOST: db
   POSTGRES_PORT: "5432"
   POSTGRES_DB: postgres
+  TZ: ${TIME_ZONE}
   
   # Authentication & Security
   JWT_SECRET: your-super-secret-jwt-token-with-at-least-32-characters-long

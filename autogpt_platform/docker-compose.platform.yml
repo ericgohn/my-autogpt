@@ -20,6 +20,7 @@ x-backend-env:
   RABBITMQ_HOST: rabbitmq
   # Override Supabase URL for Docker network
   SUPABASE_URL: http://kong:8000
+  TZ: ${TIME_ZONE}
 
 # Common env_file configuration for backend services
 x-backend-env-files: &backend-env-files
@@ -68,6 +69,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    environment:
+      - TZ=${TIME_ZONE}
   rabbitmq:
     image: ${DOCKER_SRC}rabbitmq:management
     container_name: rabbitmq
@@ -80,6 +83,7 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=rabbitmq_user_default
       - RABBITMQ_DEFAULT_PASS=k0VMxyIJF9S35f3x2uaw5IWAl6Y536O7 # CHANGE THIS TO A RANDOM PASSWORD IN PRODUCTION -- everywhere lol
+      - TZ=${TIME_ZONE}
     ports:
       - "5672:5672"
       - "15672:15672"
