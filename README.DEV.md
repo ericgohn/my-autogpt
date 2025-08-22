@@ -19,6 +19,35 @@ docker compose up -d
 docker compose --profile local up -d
 ```
 
+## For DEV
+https://dev-docs.agpt.co/platform/getting-started/#development
+
+### Server Dev
+- change directory to **autogptplatform**
+Start prerequisites servers like supabase, redis, RabitMQ etc.
+> docker compose --profile local up deps --build --detach
+- change directory to **autogptplatform/backend**
+> poetry run app
+
+#### Block test
+> `poetry run pytest backend/blocks/test/test_block.py -s`
+
+#### Formatting & Linting
+> formatting: `poetry run format`
+> Linting: `poetry run lint`
+
+### Frontend Dev
+> Generate the API client: `pnpm generate:api-client`
+> Run the frontend application: `pnpm dev`
+
+#### Formatting & Linting
+> Formatting: `pnpm format`
+> Linting: `pnpm lint`
+
+#### Testing
+> pnpm test
+
+
 ## Supabase Studio
 
 Url: http://localhost:8000  
