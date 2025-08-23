@@ -47,6 +47,19 @@ Start prerequisites servers like supabase, redis, RabitMQ etc.
 #### Testing
 > pnpm test
 
+#### 分步启动
+1. DatabaseManager
+poetry run db
+2. Scheduler
+poetry run scheduler
+3. NotificationManager
+poetry run notification
+4. WebSocketSerer
+poetry run ws
+5. AgentServer()
+poetry run rest
+6. ExecutionManager()
+poetry run executor
 
 ## Supabase Studio
 
@@ -55,6 +68,10 @@ UserName: supabase
 password: this_password_is_insecure_and_should_be_updated  
 
 (defined in autogpt_platform/db/docker/docker-compose.yml)
+
+## Others
+Best practice for SSRF prevention:  
+https://dev-docs.agpt.co/platform/new_blocks/#using-the-secure-requests-wrapper
 
 ## Docker私有仓库
 

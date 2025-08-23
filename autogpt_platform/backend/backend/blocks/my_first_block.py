@@ -2,12 +2,16 @@ import requests
 
 from backend.data.block import Block, BlockCategory, BlockOutput, BlockSchema
 from backend.data.model import SchemaField
+from backend.util.request import Requests
 
 
 class MyFirstBlock(Block):
+    """
+    Demo block
+    """
 
     class Input(BlockSchema):
-        topic: str = SchemaField(description="The topic to summarize")
+        topic: str = SchemaField(description="The topic to summarize, hahhahahaha")
 
     class Output(BlockSchema):
         summary: str = SchemaField(
@@ -29,10 +33,17 @@ class MyFirstBlock(Block):
         )
 
     async def run(self, input_data: Input, **kwargs) -> BlockOutput:
+        """
+        Using the security Requests Wrapper
+        https://dev-docs.agpt.co/platform/new_blocks/#using-the-secure-requests-wrapper
+        """
         try:
             topic = input_data.topic
             url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{topic}"
-            response = requests.get(url).json()
-            yield "summary", response.get("extract", "No summary found.")
-        except requests.exceptions.HTTPError as http_err:
-            raise RuntimeError(f"Http error occurred: {http_err}")
+            response = await Requests().get(url)
+            data = response.json()
+            yield "summary", data.get("extract", "No summary found.")
+        except ValueError as e:
+            raise RuntimeError(f"Invalid URL provided: {e}")
+        except requests.exceptions.RequestException as e:
+            raise RuntimeError(f"Request failed: {e}")

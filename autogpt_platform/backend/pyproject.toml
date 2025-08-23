@@ -109,6 +109,8 @@ cli = "backend.cli:main"
 format = "linter:format"
 lint = "linter:lint"
 test = "run_tests:test"
+pre-agent = "backend.agent_runner:pre_agent"
+post-agent = "backend.agent_runner:post_agent"
 
 [tool.isort]
 profile = "black"
