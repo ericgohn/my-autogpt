@@ -73,6 +73,10 @@ password: this_password_is_insecure_and_should_be_updated
 Best practice for SSRF prevention:  
 https://dev-docs.agpt.co/platform/new_blocks/#using-the-secure-requests-wrapper
 
+rest api dock:
+http://localhost:8006/docs
+http://localhost:8006/redoc
+
 ## Docker私有仓库
 
 `localhost:5000`
